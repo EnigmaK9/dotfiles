@@ -2,6 +2,26 @@
 "                            My Vim/Neovim Configuration
 " =============================================================================
 
+"      SSSSSSSSSSSSSSS                      iiii
+"   SS:::::::::::::::S                    i::::i
+"  S:::::SSSSSS::::::S                     iiii
+"  S:::::S     SSSSSSS
+"  S:::::S      vvvvvvv           vvvvvvviiiiiii    mmmmmmm    mmmmmmm
+"  S:::::S       v:::::v         v:::::v i:::::i  mm:::::::m  m:::::::mm
+"   S::::SSSS     v:::::v       v:::::v   i::::i m::::::::::mm::::::::::m
+"    SS::::::SSSSS v:::::v     v:::::v    i::::i m::::::::::::::::::::::m
+"      SSS::::::::SSv:::::v   v:::::v     i::::i m:::::mmm::::::mmm:::::m
+"         SSSSSS::::Sv:::::v v:::::v      i::::i m::::m   m::::m   m::::m
+"              S:::::Sv:::::v:::::v       i::::i m::::m   m::::m   m::::m
+"              S:::::S v:::::::::v        i::::i m::::m   m::::m   m::::m
+"   SSSSSSS     S:::::S  v:::::::v        i::::::im::::m   m::::m   m::::m
+"   S::::::SSSSSS:::::S   v:::::v         i::::::im::::m   m::::m   m::::m
+"   S:::::::::::::::SS     v:::v          i::::::im::::m   m::::m   m::::m
+"    SSSSSSSSSSSSSSS        vvv           iiiiiiiimmmmmm   mmmmmm   mmmmmm
+"                         _______________________________
+"                             My Vim/Neovim Configuration
+"
+
 " === Configuration Variables ======
 " Define which plugins to use:
 "   0 = None
@@ -622,12 +642,20 @@ nnoremap <Leader>t> :tabmove $<Return>
 " A special mode to simplify tab operations
 nnoremap <silent> <Leader>tm :<C-u>call TabActionMode()<Return>
 
+
+" Function: TabActionMode
+" Description:
+"   This function enters an interactive mode for controlling tab pages.
+"   It allows you to quickly switch between tabs and reposition the current tab
+"   using custom key inputs. The function will keep reading keys until an unrecognized
+"   key is pressed, which then exits the mode.
+
 function! TabActionMode()
     if tabpagenr('$') == 1
         echomsg 'Tab mode requires more than one tab'
         return
     endif
-
+    " Display a message  with instructions on how to control tabs
     echomsg 'Tab mode: use h, l, j, k, +, - or <, > to control tabs; any other key exits'
     let l:key = nr2char(getchar())
     let l:actions = {
